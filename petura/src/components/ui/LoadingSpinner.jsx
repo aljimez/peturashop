@@ -1,3 +1,7 @@
+/* LoadingSpinner
+ * Small visual spinner used during loading states. Accepts an optional
+ * `className` to customize size/color when necessary.
+ */
 import { Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 

@@ -1,3 +1,9 @@
+/* App.jsx
+ * Application root containing routing and top-level providers.
+ * - Uses `CartProvider` to make cart state available to the app
+ * - Routes map to pages under `src/pages`
+ * - Keep routing here and avoid heavy business logic in App.jsx
+ */
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import Header from "./components/Header";

@@ -1,3 +1,6 @@
+/* NuestraHistoria
+ * About / Our story page. Static content describing the brand.
+ */
 import { Helmet } from "react-helmet";
 
 const NuestraHistoria = () => {

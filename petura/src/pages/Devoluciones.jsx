@@ -1,3 +1,7 @@
+/* Devoluciones
+ * Página informativa sobre la política de devoluciones.
+ * Estática: no realiza llamadas a APIs ni mantiene estado.
+ */
 import { Helmet } from "react-helmet";
 
 const Devoluciones = () => {

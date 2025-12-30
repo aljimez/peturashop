@@ -1,3 +1,7 @@
+/* InfoEnvio
+ * Página informativa sobre costes y tiempos de envío.
+ * Estática y solo presentación.
+ */
 import { Helmet } from "react-helmet";
 
 const InfoEnvio = () => {

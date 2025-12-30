@@ -1,3 +1,7 @@
+/* TermsOfService
+ * Terms and conditions page (legal). Keep this up-to-date and
+ * avoid exposing operational secrets or internal endpoints.
+ */
 import { motion } from "framer-motion";
 import { FileText, Truck, RefreshCw, CreditCard } from "lucide-react";
 

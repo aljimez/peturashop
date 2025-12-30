@@ -1,3 +1,10 @@
+/* Toast primitives
+ * Built on top of Radix `react-toast` primitives and styled with cva.
+ * - Provides composable toast UI pieces (Toast, ToastTitle, ToastClose, etc.)
+ * - `ToastViewport` is positioned for both mobile and desktop
+ * - Keep toast as a presentational layer; the toast state is managed
+ *   separately by `use-toast` and `toaster` components
+ */
 import { cn } from "@/lib/utils";
 import * as ToastPrimitives from "@radix-ui/react-toast";
 import { cva } from "class-variance-authority";

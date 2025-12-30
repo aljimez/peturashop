@@ -1,3 +1,7 @@
+/* HeroImage
+ * Small decorative SVG component used in hero and other places.
+ * Kept as a separate component for reuse and easier testing.
+ */
 const HeroImage = () => {
   return (
     <div className="relative w-8 h-8 shrink-0" data-name="ic-sparkles">

@@ -1,3 +1,9 @@
+/* CheckoutSuccess
+ * Page shown after a successful Checkout redirect from Stripe.
+ * Important: Clearing the cart here is optimistic — in production
+ * you should verify payment status via server-side webhooks before
+ * fulfilling orders.
+ */
 import { useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { useCart } from "../context/CartContext";

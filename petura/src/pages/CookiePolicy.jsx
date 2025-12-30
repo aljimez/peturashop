@@ -1,3 +1,7 @@
+/* CookiePolicy
+ * Página de política de cookies. Complementa el componente `CookieConsent`.
+ * Stática: detalles legales y uso de cookies.
+ */
 import { Helmet } from "react-helmet";
 
 const CookiePolicy = () => {

@@ -1,3 +1,12 @@
+/* ProductDetail
+ * Product details page. Fetches product by id via `ProductService.getById`.
+ * - Shows loading / error states
+ * - Adds product to CartContext and navigates back to the shop on add
+ *
+ * Security note: The product price displayed here is purely presentation;
+ * the final charged amount should be computed on the server when creating
+ * a Checkout Session to avoid tampering.
+ */
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";

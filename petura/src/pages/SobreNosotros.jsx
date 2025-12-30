@@ -1,3 +1,6 @@
+/* SobreNosotros
+ * Company about page. Static content describing the team/mission.
+ */
 import { Helmet } from "react-helmet";
 
 const SobreNosotros = () => {

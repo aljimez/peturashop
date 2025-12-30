@@ -1,3 +1,8 @@
+/* CallToAction
+ * Small presentational component used in hero sections.
+ * Uses framer-motion for a subtle entrance animation.
+ * Keep it simple and stateless so it can be reused.
+ */
 import { motion } from "framer-motion";
 
 const CallToAction = () => {

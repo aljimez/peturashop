@@ -1,3 +1,6 @@
+/* Carreras
+ * Careers / jobs page - static informational content.
+ */
 import { Helmet } from "react-helmet";
 
 const Carreras = () => {

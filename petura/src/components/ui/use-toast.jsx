@@ -1,3 +1,14 @@
+/* use-toast
+ * Simple in-memory toast store and hook used across the app.
+ * - `toast()` mutates the central `toastStore` and returns control helpers
+ * - `useToast()` subscribes to the store and exposes `toasts` plus `toast`
+ *
+ * Notes:
+ * - This implementation is client-side only and uses an in-memory store
+ *   and local variables (so it is not SSR friendly). For SSR or multi-tab
+ *   sync, consider a more robust approach (e.g., state management lib).
+ * - TOAST_LIMIT controls how many toasts are shown at once.
+ */
 import { useState, useEffect } from "react";
 
 const TOAST_LIMIT = 1;

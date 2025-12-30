@@ -1,3 +1,7 @@
+/* Blog
+ * Static blog listing placeholder. If you add a CMS/remote data,
+ * abstract fetching into a service or hook.
+ */
 import { Helmet } from "react-helmet";
 
 const Blog = () => {

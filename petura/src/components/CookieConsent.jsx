@@ -1,3 +1,9 @@
+/* CookieConsent
+ * Simple cookie consent dialog that stores the user's choice in
+ * localStorage. This is a lightweight implementation for demos.
+ * For production consider a more robust consent management platform
+ * and allowing granular cookie categories (analytics, marketing, etc.).
+ */
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Cookie } from "lucide-react";

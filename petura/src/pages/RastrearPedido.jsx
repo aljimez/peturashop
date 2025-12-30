@@ -1,3 +1,7 @@
+/* RastrearPedido
+ * Placeholder for tracking orders. In production this should call a
+ * secure server endpoint returning limited information about the order.
+ */
 import { Helmet } from "react-helmet";
 
 const RastrearPedido = () => {

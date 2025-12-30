@@ -1,3 +1,8 @@
+/* ProductCard
+ * Displays product info (image, price, rating) and exposes an
+ * 'Add to cart' action which uses the `CartContext`.
+ * Expected `product` shape: { id, name, price, description, image, rating, category }
+ */
 import { motion } from "framer-motion";
 import { ShoppingCart, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";

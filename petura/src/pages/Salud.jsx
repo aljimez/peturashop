@@ -1,5 +1,7 @@
 import { Helmet } from "react-helmet";
-import ProductCatalog from "../components/ProductCatalog";
+/* Salud
+ * Category page for 'Salud'. Uses shared components and hooks.
+ */ import ProductCatalog from "../components/ProductCatalog";
 import { useProducts } from "../hooks/useProducts";
 
 const Salud = () => {

@@ -1,3 +1,6 @@
+/* Prensa
+ * Press page with media assets and press kit links. Static content.
+ */
 import { Helmet } from "react-helmet";
 
 const Prensa = () => {

@@ -1,3 +1,9 @@
+/* ProductCatalog
+ * Presentational component responsible for rendering the product grid
+ * and filter UI. It expects `products`, `isLoading` and `error` props.
+ * - Delegates product filtering/pagination logic to `useProductFilters` hook.
+ * - Keeps markup separated from data logic for testability and reuse.
+ */
 import { motion } from "framer-motion";
 import ProductCard from "./ProductCard";
 import { Button } from "./ui/button";

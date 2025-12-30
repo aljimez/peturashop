@@ -1,5 +1,7 @@
 import { Helmet } from "react-helmet";
-import ProductCatalog from "../components/ProductCatalog";
+/* Tecnologia
+ * Category page for 'Tecnología'. Uses shared components and hooks.
+ */ import ProductCatalog from "../components/ProductCatalog";
 import { useProducts } from "../hooks/useProducts";
 
 const Tecnologia = () => {

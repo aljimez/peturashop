@@ -1,14 +1,18 @@
 import { products } from "@/data/products";
 
 /**
- * Service Layer
- * Follows Dependency Inversion Principle (DIP).
+ * ProductService
+ * ----------------
+ * Abstraction layer between UI code and the product data source.
+ * Keep business logic (pricing, inventory, etc.) out of components and
+ * inside this service so the data source can be swapped (e.g., to a
+ * remote API) with minimal changes.
  *
- * High-level modules (components) should not depend on low-level modules (direct data imports).
- * Both should depend on abstractions (this service).
- *
- * This layer abstracts the data source. If we switch to a real API later,
- * we only update this file, not the UI components.
+ * SECURITY & PRICING NOTE:
+ * - In production, prices should be authoritative and stored server-side.
+ *   The frontend must NOT be the source of truth for prices to avoid
+ *   manipulation by malicious clients. If integrating with Stripe, the
+ *   server should calculate final amounts or use Stripe Price objects.
  */
 
 export const ProductService = {

@@ -1,3 +1,7 @@
+/* CheckoutCancel
+ * Page shown after a canceled Checkout redirect from Stripe.
+ * Users can retry the checkout flow from here.
+ */
 import { Helmet } from "react-helmet";
 
 const CheckoutCancel = () => {

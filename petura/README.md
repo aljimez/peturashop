@@ -178,6 +178,9 @@ npm run dev
 Notas de seguridad:
 - Usa sólo claves de **test** en local. No subas claves reales al repositorio.
 - Para producción, usa un Secret Manager para las claves y valida webhooks firmados.
+- **Calcula los precios en el servidor** (no confíes en `unit_amount` enviado desde el cliente).
+- **Verifica pagos con webhooks** en el servidor antes de confirmar envíos o vaciar carritos.
+- Restringe CORS a orígenes confiables y asegúrate de que la app esté detrás de HTTPS en producción.
 
 
 ---

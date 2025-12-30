@@ -1,3 +1,6 @@
+/* PreguntasFrecuentes
+ * FAQ page - static questions and answers. Keep content accessible.
+ */
 import { Helmet } from "react-helmet";
 
 const PreguntasFrecuentes = () => {

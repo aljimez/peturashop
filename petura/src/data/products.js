@@ -1,3 +1,10 @@
+/* products.js
+ * Demo product dataset used for local development and UI previews.
+ * NOTE: Prices included here are sample data and must NOT be considered
+ * authoritative for charging customers. In production, product data and
+ * prices should be sourced from a secure server or database.
+ */
+
 export const products = [
   {
     id: 1,

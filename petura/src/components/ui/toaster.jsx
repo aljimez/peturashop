@@ -1,3 +1,9 @@
+/* Toaster
+ * Maps the in-memory toast store to the visual Radix Toast primitives.
+ * - `use-toast` is the single source of truth for toast state
+ * - `Toaster` subscribes to the store and renders active toasts inside
+ *   the `ToastProvider` + `ToastViewport`
+ */
 import {
   Toast,
   ToastClose,

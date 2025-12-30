@@ -1,3 +1,13 @@
+/* Cart
+ * Sidebar component that shows the cart contents, allows quantity
+ * changes and initiates checkout.
+ * - Integrates with `CartContext` for state management.
+ * - Uses `CheckoutForm` for collecting user details / redirecting to Stripe.
+ *
+ * NOTE: `handleCheckout` below simulates payment processing as a demo.
+ * In production, prefer redirecting to Stripe Checkout (see `CheckoutForm`)
+ * or perform server-side order confirmation and rely on webhooks.
+ */
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {

@@ -1,3 +1,9 @@
+/* Footer
+ * Site footer with navigation links and contact information.
+ * - Links are responsive to internal routes or external URLs.
+ * - Keep content accessible (alt text, aria where needed) and avoid
+ *   hard-coding sensitive info; load from config for multi-environment.
+ */
 import {
   Facebook,
   Instagram,

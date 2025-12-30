@@ -1,3 +1,8 @@
+/* index.css
+ * Tailwind entrypoint and global CSS variables.
+ * - Uses Tailwind's layers (base, components, utilities)
+ * - Defines theme CSS variables for consistent colors and radii
+ */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

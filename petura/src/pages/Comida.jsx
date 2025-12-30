@@ -1,5 +1,7 @@
 import { Helmet } from "react-helmet";
-import ProductCatalog from "../components/ProductCatalog";
+/* Comida
+ * Category page for 'Comida'. Uses `ProductCatalog` and `useProducts`.
+ */ import ProductCatalog from "../components/ProductCatalog";
 import { useProducts } from "../hooks/useProducts";
 
 const Comida = () => {

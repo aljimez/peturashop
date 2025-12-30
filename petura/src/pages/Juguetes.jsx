@@ -1,5 +1,8 @@
 import { Helmet } from "react-helmet";
-import ProductCatalog from "../components/ProductCatalog";
+/* Juguetes
+ * Category page that filters products using the shared ProductCatalog
+ * and the `useProducts` hook for data fetching.
+ */ import ProductCatalog from "../components/ProductCatalog";
 import { useProducts } from "../hooks/useProducts";
 
 const Juguetes = () => {

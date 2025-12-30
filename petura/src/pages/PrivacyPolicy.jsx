@@ -1,3 +1,8 @@
+/* PrivacyPolicy
+ * Detailed privacy policy page. This should contain accurate legal
+ * information and be reviewed by legal counsel for production.
+ * Avoid embedding any sensitive operational secrets here.
+ */
 import { motion } from "framer-motion";
 import { Shield, Lock, Eye } from "lucide-react";
 

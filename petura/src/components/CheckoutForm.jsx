@@ -5,11 +5,20 @@ import { useCart } from "@/context/CartContext";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 
+/**
+ * CheckoutForm
+ * - Recoge datos de contacto y dirección del cliente
+ * - Construye un payload ligero con los artículos del carrito y solicita
+ *   al servidor la creación de una sesión de Stripe Checkout
+ * - No maneja datos de tarjeta: Stripe Checkout se encarga de eso en
+ *   su propia página segura (mejor para la seguridad y cumplimiento PCI)
+ */
 const CheckoutForm = ({ onSubmit, onBack }) => {
   const { getCartTotal, cartItems } = useCart();
   const { toast } = useToast();
   const [isProcessing, setIsProcessing] = useState(false);
 
+  // Form data for contact/shipping (no card info here)
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -25,6 +34,17 @@ const CheckoutForm = ({ onSubmit, onBack }) => {
     });
   };
 
+  /**
+   * handleStripeCheckout
+   * - Envía un payload ligero (items + urls) al servidor para crear una
+   *   sesión de Checkout. El servidor usará la clave secreta de Stripe.
+   * - Recibe `session.id` y redirige usando Stripe.js + la clave pública.
+   * - Si algo falla se muestra un toast de error.
+   *
+   * Seguridad: el payload contiene `unit_amount` tomado del cliente en
+   * este ejemplo; en producción se recomienda enviar sólo IDs de producto
+   * y que el servidor calcule/fije los precios.
+   */
   const handleStripeCheckout = async (customerData) => {
     try {
       setIsProcessing(true);
@@ -33,6 +53,7 @@ const CheckoutForm = ({ onSubmit, onBack }) => {
         import.meta.env.VITE_SERVER_URL || "http://localhost:4242";
 
       // Map cart items to a lightweight payload for the checkout session
+      // (Keep the payload minimal: name, qty, price, currency)
       const items = cartItems.map((it) => ({
         name: it.title || it.name || "Producto",
         description: it.description || "",
@@ -41,6 +62,7 @@ const CheckoutForm = ({ onSubmit, onBack }) => {
         currency: "eur",
       }));
 
+      // Create session on the server (server uses the secret key)
       const res = await fetch(`${serverUrl}/api/create-checkout-session`, {
         method: "POST",
         headers: {
@@ -55,13 +77,14 @@ const CheckoutForm = ({ onSubmit, onBack }) => {
       });
 
       if (!res.ok) {
+        // Try to surface a helpful message from the response body, fall back to a generic one
         const err = await res.json().catch(() => ({}));
         throw new Error(err.error || "Error creando sesión de pago");
       }
 
       const data = await res.json();
 
-      // Load Stripe.js and redirect to Checkout
+      // Load Stripe.js dynamically and redirect to the hosted Checkout page
       const { loadStripe } = await import("@stripe/stripe-js");
       const stripe = await loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
@@ -95,6 +118,7 @@ const CheckoutForm = ({ onSubmit, onBack }) => {
       return;
     }
 
+    // On success, request a Stripe Checkout session and redirect
     await handleStripeCheckout(formData);
   };
 

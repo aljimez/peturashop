@@ -1,3 +1,7 @@
+/* WelcomeMessage
+ * Small presentational component used in the hero/chat area
+ * Shows a short prompt and uses framer-motion for entrance animation
+ */
 import { motion } from "framer-motion";
 
 const WelcomeMessage = () => {

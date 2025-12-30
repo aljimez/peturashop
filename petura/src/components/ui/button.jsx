@@ -1,3 +1,10 @@
+/* Button
+ * Design-system button wrapper using `class-variance-authority` (cva)
+ * - `buttonVariants` define visual variants and sizes used across the app
+ * - Component supports the `asChild` pattern (Radix `Slot`) to render
+ *   custom elements while preserving button styles
+ * - Uses `cn` helper to merge className conditionally and safely
+ */
 import { cn } from "@/lib/utils";
 import { Slot } from "@radix-ui/react-slot";
 import { cva } from "class-variance-authority";

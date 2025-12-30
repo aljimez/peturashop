@@ -1,3 +1,8 @@
+/* Contacto
+ * Contact page: static content with contact details and possible form
+ * (currently read-only). Keep any form submissions going to a secure
+ * server endpoint.
+ */
 import { Helmet } from "react-helmet";
 
 const Contacto = () => {

@@ -1,3 +1,8 @@
+/* Hero
+ * Main landing hero section. Contains call-to-action buttons and
+ * decorative elements. Uses framer-motion for staggered animations.
+ * Keep presentation and behavior simple (scrollToProducts handles anchor)
+ */
 import { motion } from "framer-motion";
 import { ArrowRight, Heart, Shield, Truck } from "lucide-react";
 import { Button } from "@/components/ui/button";
