@@ -23,11 +23,19 @@ const ProductCard = ({ product }) => {
       className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-2xl transition-all duration-300 group"
     >
       <div className="relative overflow-hidden bg-gradient-to-br from-orange-50 to-beige-50 aspect-square">
-        <img
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-          alt={product.name}
-          src="https://images.unsplash.com/photo-1635865165118-917ed9e20936"
-        />
+        <a href={`/producto/${product.id}`} aria-label={`Ver ${product.name}`}>
+          <img
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            alt={product.name}
+            src={
+              product.image && product.image.startsWith("http")
+                ? product.image
+                : `https://source.unsplash.com/featured/?${encodeURIComponent(
+                    product.name
+                  )}`
+            }
+          />
+        </a>
 
         <div className="absolute top-3 right-3 bg-white rounded-full px-3 py-1 shadow-md">
           <div className="flex items-center gap-1">

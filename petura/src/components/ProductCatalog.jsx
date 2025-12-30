@@ -3,12 +3,14 @@ import ProductCard from "./ProductCard";
 import { Button } from "./ui/button";
 import { LoadingSpinner } from "./ui/LoadingSpinner";
 import { useProductFilters } from "../hooks/useProductFilters";
+import { useLocation } from "react-router-dom";
 
 const CATEGORIES = [
   "Todos",
   "Comida",
   "Juguetes",
   "Accesorios",
+  "Tecnología",
   "Camas",
   "Aseo",
   "Salud",
@@ -30,6 +32,9 @@ const ProductCatalog = ({ products, isLoading, error }) => {
     loadMore,
   } = useProductFilters(products);
 
+  const location = useLocation();
+  const showFilters = location.pathname === "/";
+
   if (error) {
     return (
       <div className="text-center py-20 text-red-500">
@@ -44,11 +49,13 @@ const ProductCatalog = ({ products, isLoading, error }) => {
       <div className="container mx-auto px-4">
         <HeaderSection />
 
-        <FilterSection
-          categories={CATEGORIES}
-          selectedCategory={selectedCategory}
-          onSelect={filterByCategory}
-        />
+        {showFilters && (
+          <FilterSection
+            categories={CATEGORIES}
+            selectedCategory={selectedCategory}
+            onSelect={filterByCategory}
+          />
+        )}
 
         {isLoading ? (
           <LoadingSpinner />

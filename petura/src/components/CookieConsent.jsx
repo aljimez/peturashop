@@ -42,12 +42,12 @@ const CookieConsent = () => {
           initial={{ y: 100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}
-          className="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6"
+          className="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6 pointer-events-none"
           role="dialog"
           aria-modal="true"
           aria-label="Consentimiento de cookies"
         >
-          <div className="container mx-auto max-w-4xl bg-white rounded-2xl shadow-2xl border border-orange-100 p-6 flex flex-col md:flex-row items-center gap-6 relative">
+          <div className="container mx-auto max-w-4xl bg-white rounded-2xl shadow-2xl border border-orange-100 p-6 flex flex-col md:flex-row items-center gap-6 relative pointer-events-auto">
             <button
               onClick={handleReject}
               aria-label="Cerrar"

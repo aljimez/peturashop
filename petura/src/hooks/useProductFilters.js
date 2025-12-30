@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 
 /**
  * Custom Hook: useProductFilters
@@ -10,6 +10,12 @@ import { useState, useMemo } from "react";
 export const useProductFilters = (products, itemsPerPage = 12) => {
   const [selectedCategory, setSelectedCategory] = useState("Todos");
   const [visibleCount, setVisibleCount] = useState(itemsPerPage);
+
+  // Reset filters when the incoming products set changes (e.g., navigating between pages)
+  useEffect(() => {
+    setSelectedCategory("Todos");
+    setVisibleCount(itemsPerPage);
+  }, [products, itemsPerPage]);
 
   // Memoize filtering to prevent expensive recalculations on every render
   const filteredProducts = useMemo(() => {

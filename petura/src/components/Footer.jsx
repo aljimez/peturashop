@@ -19,20 +19,22 @@ const Footer = () => {
       { name: "Juguetes y Juegos", path: "/juguetes" },
       { name: "Accesorios", path: "/accesorios" },
       { name: "Salud y Bienestar", path: "/salud" },
+      { name: "Tecnología", path: "/tecnologia" },
     ],
     Empresa: [
-      { name: "Sobre Nosotros", path: "#" },
-      { name: "Nuestra Historia", path: "#" },
-      { name: "Blog", path: "#" },
-      { name: "Carreras", path: "#" },
-      { name: "Prensa", path: "#" },
+      { name: "Sobre Nosotros", path: "/sobre-nosotros" },
+      { name: "Nuestra Historia", path: "/nuestra-historia" },
+      { name: "Blog", path: "/blog" },
+      { name: "Carreras", path: "/carreras" },
+      { name: "Prensa", path: "/prensa" },
     ],
     Soporte: [
-      { name: "Contáctanos", path: "#" },
-      { name: "Preguntas Frecuentes", path: "#" },
-      { name: "Info de Envío", path: "#" },
-      { name: "Devoluciones", path: "#" },
-      { name: "Rastrear Pedido", path: "#" },
+      { name: "Contáctanos", path: "/contacto" },
+      { name: "Preguntas Frecuentes", path: "/preguntas-frecuentes" },
+      { name: "Info de Envío", path: "/info-envio" },
+      { name: "Devoluciones", path: "/devoluciones" },
+      { name: "Rastrear Pedido", path: "/rastrear-pedido" },
+      { name: "Política de Cookies", path: "/cookies" },
     ],
   };
 
@@ -59,19 +61,25 @@ const Footer = () => {
             </p>
             <div className="flex gap-3">
               <a
-                href="#"
+                href="https://facebook.com/petura.shop"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-gray-800 hover:bg-orange-500 p-2 rounded-lg transition-all hover:scale-110"
               >
                 <Facebook className="h-5 w-5" />
               </a>
               <a
-                href="#"
+                href="https://instagram.com/petura.shop"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-gray-800 hover:bg-orange-500 p-2 rounded-lg transition-all hover:scale-110"
               >
                 <Instagram className="h-5 w-5" />
               </a>
               <a
-                href="#"
+                href="https://twitter.com/petura_shop"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-gray-800 hover:bg-orange-500 p-2 rounded-lg transition-all hover:scale-110"
               >
                 <Twitter className="h-5 w-5" />
@@ -170,12 +178,12 @@ const Footer = () => {
             >
               Términos y Condiciones
             </Link>
-            <a
-              href="#"
+            <Link
+              to="/cookies"
               className="text-gray-400 hover:text-orange-400 transition-colors"
             >
               Política de Cookies
-            </a>
+            </Link>
           </div>
         </div>
       </div>

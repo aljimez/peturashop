@@ -18,11 +18,26 @@ const Header = () => {
   } = useMobileMenu();
   const cartCount = getCartCount();
 
-  const menuItems = ["Ver Todo", "Comida", "Juguetes", "Accesorios", "Salud"];
+  const menuItems = [
+    "Ver Todo",
+    "Comida",
+    "Juguetes",
+    "Accesorios",
+    "Salud",
+    "Tecnología",
+  ];
+
+  const slugify = (s) =>
+    s
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/\s+/g, "-")
+      .replace(/[^a-z0-9-]/g, "");
 
   const getPath = (item) => {
     if (item === "Ver Todo") return "/";
-    return `/${item.toLowerCase()}`;
+    return `/${slugify(item)}`;
   };
 
   return (

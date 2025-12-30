@@ -16,9 +16,6 @@ const CheckoutForm = ({ onSubmit, onBack }) => {
     address: "",
     city: "",
     zipCode: "",
-    cardNumber: "",
-    cardExpiry: "",
-    cardCVC: "",
   });
 
   const handleChange = (e) => {
@@ -28,16 +25,67 @@ const CheckoutForm = ({ onSubmit, onBack }) => {
     });
   };
 
+  const handleStripeCheckout = async (customerData) => {
+    try {
+      setIsProcessing(true);
+
+      const serverUrl =
+        import.meta.env.VITE_SERVER_URL || "http://localhost:4242";
+
+      // Map cart items to a lightweight payload for the checkout session
+      const items = cartItems.map((it) => ({
+        name: it.title || it.name || "Producto",
+        description: it.description || "",
+        unit_amount: it.price,
+        quantity: it.quantity || 1,
+        currency: "eur",
+      }));
+
+      const res = await fetch(`${serverUrl}/api/create-checkout-session`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          items,
+          successUrl: `${window.location.origin}/checkout/success`,
+          cancelUrl: `${window.location.origin}/checkout/cancel`,
+          customer: customerData,
+        }),
+      });
+
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.error || "Error creando sesión de pago");
+      }
+
+      const data = await res.json();
+
+      // Load Stripe.js and redirect to Checkout
+      const { loadStripe } = await import("@stripe/stripe-js");
+      const stripe = await loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
+
+      if (!stripe) throw new Error("Stripe no pudo inicializarse.");
+
+      const { error } = await stripe.redirectToCheckout({ sessionId: data.id });
+      if (error) throw error;
+    } catch (err) {
+      console.error(err);
+      toast({
+        title: "Error de Pago",
+        description: err.message || "No se pudo iniciar el pago.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsProcessing(false);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Basic validation
-    if (
-      !formData.name ||
-      !formData.email ||
-      !formData.address ||
-      !formData.cardNumber
-    ) {
+    // Basic validation (contact + address only; card data handled by Stripe Checkout)
+    if (!formData.name || !formData.email || !formData.address) {
       toast({
         title: "Falta Información",
         description: "Por favor completa todos los campos requeridos.",
@@ -47,9 +95,7 @@ const CheckoutForm = ({ onSubmit, onBack }) => {
       return;
     }
 
-    setIsProcessing(true);
-    await onSubmit(formData);
-    setIsProcessing(false);
+    await handleStripeCheckout(formData);
   };
 
   const shippingCost = 9.99;
@@ -189,62 +235,19 @@ const CheckoutForm = ({ onSubmit, onBack }) => {
           </div>
         </div>
 
-        {/* Payment Information */}
+        {/* Payment Information (Stripe Checkout) */}
         <div className="space-y-4">
           <h3 className="font-semibold text-gray-900">Información de Pago</h3>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Número de Tarjeta *
-            </label>
-            <input
-              type="text"
-              name="cardNumber"
-              value={formData.cardNumber}
-              onChange={handleChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
-              placeholder="1234 5678 9012 3456"
-              maxLength="19"
-              required
-            />
-          </div>
-
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Fecha de Expiración *
-              </label>
-              <input
-                type="text"
-                name="cardExpiry"
-                value={formData.cardExpiry}
-                onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
-                placeholder="MM/YY"
-                maxLength="5"
-                required
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                CVC *
-              </label>
-              <input
-                type="text"
-                name="cardCVC"
-                value={formData.cardCVC}
-                onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
-                placeholder="123"
-                maxLength="4"
-                required
-              />
-            </div>
-          </div>
+          <p className="text-gray-600">
+            Al pulsar en <strong>"Pagar con Stripe"</strong> serás redirigido a
+            una página segura alojada por Stripe para introducir los datos de tu
+            tarjeta. Nunca almacenamos ni procesamos directamente números de
+            tarjeta en este servidor.
+          </p>
         </div>
 
-        {/* Submit Button */}
+        {/* Submit Button (Stripe Checkout) */}
         <Button
           type="submit"
           disabled={isProcessing}
@@ -253,18 +256,18 @@ const CheckoutForm = ({ onSubmit, onBack }) => {
           {isProcessing ? (
             <>
               <Loader2 className="h-5 w-5 mr-2 animate-spin" />
-              Procesando Pago...
+              Redirigiendo a pago...
             </>
           ) : (
             <>
               <CreditCard className="h-5 w-5 mr-2" />
-              Completar Pedido ${total.toFixed(2)}
+              Pagar con Stripe ${total.toFixed(2)}
             </>
           )}
         </Button>
 
         <p className="text-xs text-gray-500 text-center">
-          Tu información de pago es segura y está encriptada
+          Serás redirigido a una página de pago segura alojada por Stripe.
         </p>
       </form>
     </motion.div>
